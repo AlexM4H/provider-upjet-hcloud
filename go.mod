@@ -1,4 +1,4 @@
-module github.com/crossplane-contrib/provider-jet-hcloud
+module github.com/rybnico/provider-jet-hcloud
 
 go 1.16
 

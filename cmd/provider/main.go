@@ -28,10 +28,10 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/crossplane-contrib/provider-jet-hcloud/apis"
-	pconfig "github.com/crossplane-contrib/provider-jet-hcloud/config"
-	"github.com/crossplane-contrib/provider-jet-hcloud/internal/clients"
-	"github.com/crossplane-contrib/provider-jet-hcloud/internal/controller"
+	"github.com/rybnico/provider-jet-hcloud/apis"
+	pconfig "github.com/rybnico/provider-jet-hcloud/config"
+	"github.com/rybnico/provider-jet-hcloud/internal/clients"
+	"github.com/rybnico/provider-jet-hcloud/internal/controller"
 )
 
 func main() {
