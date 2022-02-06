@@ -1,14 +1,14 @@
 # ====================================================================================
 # Setup Project
 
-PROJECT_NAME := provider-jet-template
+PROJECT_NAME := provider-jet-hcloud
 PROJECT_REPO := github.com/crossplane-contrib/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.0.11
-export TERRAFORM_PROVIDER_SOURCE := hashicorp/hashicups
-export TERRAFORM_PROVIDER_VERSION := 0.3.2
-export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-hashicups
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/hashicorp/terraform-provider-hashicups/releases/download/v0.3.2
+export TERRAFORM_PROVIDER_SOURCE := hetznercloud/terraform-provider-hcloud
+export TERRAFORM_PROVIDER_VERSION := 1.32.2
+export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-hcloud
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/hetznercloud/terraform-provider-hcloud/releases/download/v1.32.2
 
 PLATFORMS ?= linux_amd64 linux_arm64
 
@@ -50,7 +50,7 @@ GO111MODULE = on
 # Setup Images
 
 DOCKER_REGISTRY ?= crossplane
-IMAGES = provider-jet-template provider-jet-template-controller
+IMAGES = provider-jet-hcloud provider-jet-hcloud-controller
 -include build/makelib/image.mk
 
 # ====================================================================================

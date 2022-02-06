@@ -25,16 +25,56 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/crossplane/terrajet/pkg/terraform"
 
-	order "github.com/crossplane-contrib/provider-jet-template/internal/controller/hashicups/order"
-	providerconfig "github.com/crossplane-contrib/provider-jet-template/internal/controller/providerconfig"
+	ip "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/floating/ip"
+	ipassignment "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/floating/ipassignment"
+	certificate "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/certificate"
+	firewall "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/firewall"
+	network "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/network"
+	rdns "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/rdns"
+	server "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/server"
+	snapshot "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/snapshot"
+	volume "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/hcloud/volume"
+	balancer "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/load/balancer"
+	balancernetwork "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/load/balancernetwork"
+	balancerservice "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/load/balancerservice"
+	balancertarget "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/load/balancertarget"
+	certificatemanaged "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/managed/certificate"
+	route "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/network/route"
+	subnet "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/network/subnet"
+	group "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/placement/group"
+	providerconfig "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/providerconfig"
+	networkserver "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/server/network"
+	key "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/ssh/key"
+	certificateuploaded "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/uploaded/certificate"
+	attachment "github.com/crossplane-contrib/provider-jet-hcloud/internal/controller/volume/attachment"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, l logging.Logger, wl workqueue.RateLimiter, ps terraform.SetupFn, ws *terraform.WorkspaceStore, cfg *tjconfig.Provider, concurrency int) error {
 	for _, setup := range []func(ctrl.Manager, logging.Logger, workqueue.RateLimiter, terraform.SetupFn, *terraform.WorkspaceStore, *tjconfig.Provider, int) error{
-		order.Setup,
+		ip.Setup,
+		ipassignment.Setup,
+		certificate.Setup,
+		firewall.Setup,
+		network.Setup,
+		rdns.Setup,
+		server.Setup,
+		snapshot.Setup,
+		volume.Setup,
+		balancer.Setup,
+		balancernetwork.Setup,
+		balancerservice.Setup,
+		balancertarget.Setup,
+		certificatemanaged.Setup,
+		route.Setup,
+		subnet.Setup,
+		group.Setup,
 		providerconfig.Setup,
+		networkserver.Setup,
+		key.Setup,
+		certificateuploaded.Setup,
+		attachment.Setup,
 	} {
 		if err := setup(mgr, l, wl, ps, ws, cfg, concurrency); err != nil {
 			return err

@@ -22,15 +22,33 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/crossplane-contrib/provider-jet-template/apis/hashicups/v1alpha1"
-	v1alpha1apis "github.com/crossplane-contrib/provider-jet-template/apis/v1alpha1"
+	v1alpha1 "github.com/crossplane-contrib/provider-jet-hcloud/apis/floating/v1alpha1"
+	v1alpha1hcloud "github.com/crossplane-contrib/provider-jet-hcloud/apis/hcloud/v1alpha1"
+	v1alpha1load "github.com/crossplane-contrib/provider-jet-hcloud/apis/load/v1alpha1"
+	v1alpha1managed "github.com/crossplane-contrib/provider-jet-hcloud/apis/managed/v1alpha1"
+	v1alpha1network "github.com/crossplane-contrib/provider-jet-hcloud/apis/network/v1alpha1"
+	v1alpha1placement "github.com/crossplane-contrib/provider-jet-hcloud/apis/placement/v1alpha1"
+	v1alpha1server "github.com/crossplane-contrib/provider-jet-hcloud/apis/server/v1alpha1"
+	v1alpha1ssh "github.com/crossplane-contrib/provider-jet-hcloud/apis/ssh/v1alpha1"
+	v1alpha1uploaded "github.com/crossplane-contrib/provider-jet-hcloud/apis/uploaded/v1alpha1"
+	v1alpha1apis "github.com/crossplane-contrib/provider-jet-hcloud/apis/v1alpha1"
+	v1alpha1volume "github.com/crossplane-contrib/provider-jet-hcloud/apis/volume/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1hcloud.SchemeBuilder.AddToScheme,
+		v1alpha1load.SchemeBuilder.AddToScheme,
+		v1alpha1managed.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
+		v1alpha1placement.SchemeBuilder.AddToScheme,
+		v1alpha1server.SchemeBuilder.AddToScheme,
+		v1alpha1ssh.SchemeBuilder.AddToScheme,
+		v1alpha1uploaded.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
+		v1alpha1volume.SchemeBuilder.AddToScheme,
 	)
 }
 

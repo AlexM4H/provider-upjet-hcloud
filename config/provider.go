@@ -22,8 +22,8 @@ import (
 )
 
 const (
-	resourcePrefix = "template"
-	modulePath     = "github.com/crossplane-contrib/provider-jet-template"
+	resourcePrefix = "hcloud"
+	modulePath     = "github.com/crossplane-contrib/provider-jet-hcloud"
 )
 
 // GetProvider returns provider configuration
