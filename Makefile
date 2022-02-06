@@ -49,7 +49,7 @@ GO111MODULE = on
 # ====================================================================================
 # Setup Images
 
-DOCKER_REGISTRY ?= rybnico
+DOCKER_REGISTRY ?= nrybnikar
 IMAGES = provider-jet-hcloud provider-jet-hcloud-controller
 -include build/makelib/image.mk
 
