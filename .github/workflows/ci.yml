@@ -309,20 +309,13 @@ jobs:
           username: ${{ secrets.DOCKER_USR }}
           password: ${{ secrets.DOCKER_PSW }}
       
-      - name: Publish Artifacts to S3 and Docker Hub
-        run: make -j2 publish BRANCH_NAME=${GITHUB_REF##*/}
-        if: env.AWS_USR != '' && env.DOCKER_USR != ''
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_USR }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_PSW }}
-          GIT_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Docker image
+        run: make -j2 img.release.build BRANCH_NAME=${GITHUB_REF##*/}
+        if: env.DOCKER_USR != ''
       
-      - name: Promote Artifacts in S3 and Docker Hub
-        if: github.ref == 'refs/heads/main' && env.AWS_USR != '' && env.DOCKER_USR != ''
-        run: make -j2 promote
+      - name: Push image to Docker Hub
+        if: github.ref == 'refs/heads/main' && env.DOCKER_USR != ''
+        run: make -j2 promote.artifacts
         env:
           BRANCH_NAME: main
           CHANNEL: main
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_USR }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_PSW }}
-        
