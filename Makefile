@@ -2,7 +2,7 @@
 # Setup Project
 
 PROJECT_NAME := provider-jet-hcloud
-PROJECT_REPO := github.com/crossplane-contrib/$(PROJECT_NAME)
+PROJECT_REPO := github.com/rybnico/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.0.11
 export TERRAFORM_PROVIDER_SOURCE := hetznercloud/terraform-provider-hcloud
@@ -49,7 +49,7 @@ GO111MODULE = on
 # ====================================================================================
 # Setup Images
 
-DOCKER_REGISTRY ?= crossplane
+DOCKER_REGISTRY ?= rybnico
 IMAGES = provider-jet-hcloud provider-jet-hcloud-controller
 -include build/makelib/image.mk
 
