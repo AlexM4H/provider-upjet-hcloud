@@ -4,4 +4,4 @@ metadata:
   name: provider-jet-hcloud
 spec:
   controller:
-    image: DOCKER_REGISTRY/provider-jet-hcloud-controller:VERSION
+    image: DOCKER_REGISTRY/provider-jet-hcloud-controller-ARCH:VERSION
