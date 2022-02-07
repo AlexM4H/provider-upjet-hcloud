@@ -1,0 +1,8 @@
+apiVersion: servers.hcloud.hcloud.jet.crossplane.io/v1alpha1
+kind: Server
+metadata:
+  name: example
+spec:
+  forProvider:
+  providerConfigRef:
+    name: default
