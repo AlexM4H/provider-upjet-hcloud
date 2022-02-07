@@ -315,7 +315,7 @@ jobs:
       
       - name: Push image to Docker Hub
         if: github.ref == 'refs/heads/main' && env.DOCKER_USR != ''
-        run: make -j2 promote.artifacts
+        run: make -j2 img.release.publish
         env:
           BRANCH_NAME: main
           CHANNEL: main
