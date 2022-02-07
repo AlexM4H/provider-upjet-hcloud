@@ -5,7 +5,7 @@ PROJECT_NAME := provider-jet-hcloud
 PROJECT_REPO := github.com/rybnico/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.0.11
-export TERRAFORM_PROVIDER_SOURCE := hetznercloud/terraform-provider-hcloud
+export TERRAFORM_PROVIDER_SOURCE := hetznercloud/hcloud
 export TERRAFORM_PROVIDER_VERSION := 1.32.2
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-hcloud
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://github.com/hetznercloud/terraform-provider-hcloud/releases/download/v1.32.2
