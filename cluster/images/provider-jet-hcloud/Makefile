@@ -6,7 +6,7 @@ include ../../../build/makelib/common.mk
 
 # ====================================================================================
 #  Options
-DOCKER_REGISTRY ?= crossplane
+DOCKER_REGISTRY ?= nrybnikar
 IMAGE = $(BUILD_REGISTRY)/provider-jet-hcloud-$(ARCH)
 OSBASEIMAGE = scratch
 include ../../../build/makelib/image.mk
