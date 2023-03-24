@@ -22,16 +22,16 @@ import (
 
 	"github.com/crossplane/crossplane-runtime/pkg/logging"
 	"github.com/crossplane/crossplane-runtime/pkg/ratelimiter"
-	"github.com/crossplane/terrajet/pkg/terraform"
+	"github.com/upbound/upjet/pkg/terraform"
 	tf "github.com/hetznercloud/terraform-provider-hcloud/hcloud"
 	"gopkg.in/alecthomas/kingpin.v2"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/rybnico/provider-jet-hcloud/apis"
-	pconfig "github.com/rybnico/provider-jet-hcloud/config"
-	"github.com/rybnico/provider-jet-hcloud/internal/clients"
-	"github.com/rybnico/provider-jet-hcloud/internal/controller"
+	"github.com/AlexM4H/provider-upjet-hcloud/apis"
+	pconfig "github.com/AlexM4H/provider-upjet-hcloud/config"
+	"github.com/AlexM4H/provider-upjet-hcloud/internal/clients"
+	"github.com/AlexM4H/provider-upjet-hcloud/internal/controller"
 )
 
 func main() {

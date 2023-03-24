@@ -1,8 +1,8 @@
 # ====================================================================================
 # Setup Project
 
-PROJECT_NAME := provider-jet-hcloud
-PROJECT_REPO := github.com/rybnico/$(PROJECT_NAME)
+PROJECT_NAME := provider-upjet-hcloud
+PROJECT_REPO := github.com/AlexM4H/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.0.11
 export TERRAFORM_PROVIDER_SOURCE := hetznercloud/hcloud
@@ -35,22 +35,29 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider
+GO_REQUIRED_VERSION ?= 1.20
+GOLANGCILINT_VERSION ?= 1.50.0
+GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis
+
 GO111MODULE = on
 -include build/makelib/golang.mk
 
 # ====================================================================================
 # Setup Kubernetes tools
 
+KIND_VERSION = v0.15.0
+UP_VERSION = v0.14.0
+UP_CHANNEL = stable
+UPTEST_VERSION = v0.2.1
 -include build/makelib/k8s_tools.mk
 
 # ====================================================================================
 # Setup Images
 
-DOCKER_REGISTRY ?= nrybnikar
-IMAGES = provider-jet-hcloud provider-jet-hcloud-controller
+DOCKER_REGISTRY ?= xpkg.upbound.io/upbound
+IMAGES = provider-upjet-hcloud provider-upjet-hcloud-controller
 -include build/makelib/image.mk
 
 # ====================================================================================

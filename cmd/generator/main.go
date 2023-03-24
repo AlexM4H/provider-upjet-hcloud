@@ -26,12 +26,12 @@ import (
 
 	tf "github.com/hetznercloud/terraform-provider-hcloud/hcloud"
 
-	"github.com/crossplane/terrajet/pkg/pipeline"
+	"github.com/upbound/upjet/pkg/pipeline"
 	// Comment out the line below, if your Terraform provider uses an old
 	// version (<v2) of github.com/hashicorp/terraform-plugin-sdk.
-	// "github.com/crossplane/terrajet/pkg/types/conversion"
+	// "github.com/upbound/upjet/pkg/types/conversion"
 
-	"github.com/rybnico/provider-jet-hcloud/config"
+	"github.com/AlexM4H/provider-upjet-hcloud/config"
 )
 
 func main() {

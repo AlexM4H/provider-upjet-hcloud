@@ -17,15 +17,15 @@ limitations under the License.
 package config
 
 import (
-	tjconfig "github.com/crossplane/terrajet/pkg/config"
+	tjconfig "github.com/upbound/upjet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 const (
 	resourcePrefix = "hcloud"
-	modulePath     = "github.com/rybnico/provider-jet-hcloud"
+	modulePath     = "github.com/AlexM4H/provider-upjet-hcloud"
 )
-
+/*
 // GetProvider returns provider configuration
 func GetProvider(resourceMap map[string]*schema.Resource) *tjconfig.Provider {
 	defaultResourceFn := func(name string, terraformResource *schema.Resource, opts ...tjconfig.ResourceOption) *tjconfig.Resource {
@@ -36,7 +36,7 @@ func GetProvider(resourceMap map[string]*schema.Resource) *tjconfig.Provider {
 	}
 
 	pc := tjconfig.NewProvider(resourceMap, resourcePrefix, modulePath,
-		tjconfig.WithDefaultResourceFn(defaultResourceFn))
+		tjconfig.WithDefaultResourceOptions(defaultResourceFn))
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		// add custom config functions
@@ -46,4 +46,34 @@ func GetProvider(resourceMap map[string]*schema.Resource) *tjconfig.Provider {
 
 	pc.ConfigureResources()
 	return pc
+}
+*/
+// GetProvider returns provider configuration
+func GetProvider() *ujconfig.Provider {
+        pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
+                ujconfig.WithIncludeList(ExternalNameConfigured()),
+                ujconfig.WithDefaultResourceOptions(
+                        ExternalNameConfigurations(),
+                ujconfig.WithBasePackages(config.BasePackages{
+			APIVersion: []string{
+				// Default package for ProviderConfig APIs
+				"apis/v1alpha1",
+			},
+			Controller: []string{
+				// Default package for ProviderConfig controllers
+				"internal/controller/providerconfig",
+			},
+		    })
+                ))
+
+        for _, configure := range []func(provider *ujconfig.Provider){
+                // add custom config functions
+                repository.Configure,
+                branch.Configure,
+        } {
+                configure(pc)
+        }
+
+        pc.ConfigureResources()
+        return pc
 }
